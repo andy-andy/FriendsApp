@@ -1,0 +1,29 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+
+    <item
+        android:id="@+id/search"
+        android:icon="@android:drawable/ic_menu_search"
+        android:orderInCategory="10"
+        android:showAsAction="always"
+        android:title="@string/main_search_title"
+        tools:ignore="AppCompatResource" />
+
+    <item
+        android:id="@+id/add"
+        android:icon="@android:drawable/ic_menu_add"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="@string/main_add_title"
+        tools:ignore="AppCompatResource" />
+
+    <item
+        android:id="@+id/deleteDatabase"
+        android:orderInCategory="50"
+        android:showAsAction="never"
+        android:title="@string/main_deleteDatabase_title"
+        tools:ignore="AppCompatResource" />
+</menu><!---->
