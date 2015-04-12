@@ -17,7 +17,6 @@ import android.widget.Toast;
  * Created by andreytarasenko on 4/1/15.
  */
 public class AddActivity extends FragmentActivity {
-
     private final String LOG_TAG = AddActivity.class.getSimpleName();
     private TextView mNameTextView, mPhoneTextView, mEmailTextView;
     private Button mButton;
@@ -33,13 +32,13 @@ public class AddActivity extends FragmentActivity {
 
         mNameTextView = (TextView) findViewById(R.id.friend_name);
         mPhoneTextView = (TextView) findViewById(R.id.friend_phone);
-        mEmailTextView = (TextView) findViewById(R.id.friend_email);
+            mEmailTextView = (TextView) findViewById(R.id.friend_email);
 
         mButton = (Button) findViewById(R.id.saveButton);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isValid) {
+                if (isValid()) {
                     ContentValues values = new ContentValues();
                     values.put(FriendsContract.FriendsColumns.FRIENDS_NAME, mNameTextView.getText().toString());
                     values.put(FriendsContract.FriendsColumns.FRIENDS_PHONE, mPhoneTextView.getText().toString());
