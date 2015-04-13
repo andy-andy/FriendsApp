@@ -19,10 +19,12 @@ public class FriendsSearchListLoader extends AsyncTaskLoader<List<Friend>> {
     private List<Friend> mFriends;
     private ContentResolver mContentResolver;
     private Cursor mCursor;
+    private String mFilterText;
 
-    public FriendsSearchListLoader(Context context, Uri uri, ContentResolver contentResolver) {
+    public FriendsSearchListLoader(Context context, Uri uri, ContentResolver contentResolver, String filterText) {
         super(context);
         mContentResolver = contentResolver;
+        mFilterText = filterText;
     }
 
     @Override
@@ -34,7 +36,8 @@ public class FriendsSearchListLoader extends AsyncTaskLoader<List<Friend>> {
                 FriendsContract.FriendsColumns.FRIENDS_EMAIL};
         List<Friend> entries = new ArrayList<Friend>();
 
-        mCursor = mContentResolver.query(FriendsContract.URI_TABLE, projection, null, null, null);
+        String selection = FriendsContract.FriendsColumns.FRIENDS_NAME + " LIKE " + mFilterText +"%'";
+        mCursor = mContentResolver.query(FriendsContract.URI_TABLE, projection, selection, null, null);
         if (mCursor != null) {
             if (mCursor.moveToFirst()) {
                 do {

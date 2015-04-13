@@ -17,11 +17,11 @@ import java.util.List;
  * Created by andreytarasenko on 4/12/15.
  */
 public class SearchActivity extends FragmentActivity
-implements LoaderManager.LoaderCallbacks<List<Friend>>{
+        implements LoaderManager.LoaderCallbacks<List<Friend>> {
 
     private static final String LOG_TAG = SearchActivity.class.getSimpleName();
     private FriendsCustomAdapter mFriendsCustomAdapter;
-    private static int LOADER_ID =2;
+    private static int LOADER_ID = 2;
     private ContentResolver mContentResolver;
     private List<Friend> friendsRetrieved;
     private ListView listView;
