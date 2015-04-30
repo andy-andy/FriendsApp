@@ -39,9 +39,12 @@ public class FriendsListLoader extends AsyncTaskLoader<List<Friend>> {
             if (mCursor.moveToFirst()) {
                 do {
                     int _id = mCursor.getInt(mCursor.getColumnIndex(BaseColumns._ID));
-                    String name = mCursor.getString(FriendsContract.FriendsColumns.FRIENDS_NAME);
-                    String phone = mCursor.getString(FriendsContract.FriendsColumns.FRIENDS_PHONE);
-                    String email = mCursor.getString(FriendsContract.FriendsColumns.FRIENDS_EMAIL);
+                    String name = mCursor.getString(
+                            mCursor.getColumnIndex(FriendsContract.FriendsColumns.FRIENDS_NAME));
+                    String phone = mCursor.getString(
+                            mCursor.getColumnIndex(FriendsContract.FriendsColumns.FRIENDS_PHONE));
+                    String email = mCursor.getString(
+                            mCursor.getColumnIndex(FriendsContract.FriendsColumns.FRIENDS_EMAIL));
 
                     Friend friend = new Friend(_id, name, phone, email);
                     entries.add(friend);

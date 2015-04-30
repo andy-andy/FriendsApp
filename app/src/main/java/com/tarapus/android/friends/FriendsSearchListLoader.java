@@ -36,21 +36,24 @@ public class FriendsSearchListLoader extends AsyncTaskLoader<List<Friend>> {
                 FriendsContract.FriendsColumns.FRIENDS_EMAIL};
         List<Friend> entries = new ArrayList<Friend>();
 
-        String selection = FriendsContract.FriendsColumns.FRIENDS_NAME + " LIKE " + mFilterText +"%'";
+        String selection = FriendsContract.FriendsColumns.FRIENDS_NAME + " LIKE '" + mFilterText + "%'";
         mCursor = mContentResolver.query(FriendsContract.URI_TABLE, projection, selection, null, null);
         if (mCursor != null) {
-            if (mCursor.moveToFirst()) {
+            if (mCursor.moveToFirst())
                 do {
                     int _id = mCursor.getInt(mCursor.getColumnIndex(BaseColumns._ID));
-                    String name = mCursor.getString(FriendsContract.FriendsColumns.FRIENDS_NAME);
-                    String phone = mCursor.getString(FriendsContract.FriendsColumns.FRIENDS_PHONE);
-                    String email = mCursor.getString(FriendsContract.FriendsColumns.FRIENDS_EMAIL);
+                    String name = mCursor.getString(
+                            mCursor.getColumnIndex(FriendsContract.FriendsColumns.FRIENDS_NAME));
+                    String phone = mCursor.getString(
+                            mCursor.getColumnIndex(FriendsContract.FriendsColumns.FRIENDS_PHONE));
+                    String email = mCursor.getString(
+                            mCursor.getColumnIndex(FriendsContract.FriendsColumns.FRIENDS_EMAIL));
 
                     Friend friend = new Friend(_id, name, phone, email);
                     entries.add(friend);
                 } while (mCursor.moveToNext());
 
-            }
+
         }
         return entries;
     }

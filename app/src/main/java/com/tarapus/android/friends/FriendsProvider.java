@@ -18,7 +18,7 @@ public class FriendsProvider extends ContentProvider {
 
     private FriendsDatabase mOpenHelper;
     private static String TAG = FriendsProvider.class.getSimpleName();
-    private static final UriMatcher sUriMatcher = buildUriMatcher;
+    private static final UriMatcher sUriMatcher = buildUriMatcher();
 
 
     private static final int FRIENDS = 100;
@@ -64,6 +64,7 @@ public class FriendsProvider extends ContentProvider {
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         final SQLiteDatabase db = mOpenHelper.getReadableDatabase();
         final int match = sUriMatcher.match(uri);
+
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
         queryBuilder.setTables(FriendsDatabase.Tables.FRIENDS);
 
@@ -89,7 +90,7 @@ public class FriendsProvider extends ContentProvider {
         switch (match) {
             case FRIENDS:
                 long recordId = db.insertOrThrow(FriendsDatabase.Tables.FRIENDS, null, values);
-                return FriendsContract.Friends.buildFriendUri(recordId);
+                return FriendsContract.Friends.buildFriendUri(String.valueOf(recordId));
             default:
                 throw new IllegalArgumentException("Unknown Uri: " + uri);
         }
@@ -100,6 +101,7 @@ public class FriendsProvider extends ContentProvider {
         Log.v(TAG, "update(uri= " + uri + ", values= " + values.toString());
         final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
         final int match = sUriMatcher.match(uri);
+
         String selectionCriteria = selection;
         switch (match) {
             case FRIENDS:
@@ -108,8 +110,9 @@ public class FriendsProvider extends ContentProvider {
             case FRIENDS_ID:
                 String id = FriendsContract.Friends.getFriendId(uri);
                 selectionCriteria = BaseColumns._ID + "=" + id
-                        + (TextUtils.isEmpty(selection) ? " AND (" + selection + ")" : "");
+                        + (!TextUtils.isEmpty(selection) ? " AND (" + selection + ")" : "");
                 break;
+
             default:
                 throw new IllegalArgumentException("Unknown Uri: " + uri);
         }

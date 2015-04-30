@@ -29,6 +29,10 @@ public class EditActivity extends FragmentActivity {
         setContentView(R.layout.add_edit);
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
+        mNameTextView = (TextView) findViewById(R.id.friend_name);
+        mPhoneTextView = (TextView) findViewById(R.id.friend_phone);
+        mEmailTextView = (TextView) findViewById(R.id.friend_email);
+
         mContentResolver = EditActivity.this.getContentResolver();
 
         Intent intent = getIntent();
@@ -41,11 +45,8 @@ public class EditActivity extends FragmentActivity {
         mPhoneTextView.setText(phone);
         mEmailTextView.setText(email);
 
-        mNameTextView = (TextView) findViewById(R.id.friend_name);
-        mPhoneTextView = (TextView) findViewById(R.id.friend_phone);
-        mEmailTextView = (TextView) findViewById(R.id.friend_email);
-
         mButton = (Button) findViewById(R.id.saveButton);
+
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +54,9 @@ public class EditActivity extends FragmentActivity {
                 values.put(FriendsContract.FriendsColumns.FRIENDS_NAME, mNameTextView.getText().toString());
                 values.put(FriendsContract.FriendsColumns.FRIENDS_PHONE, mPhoneTextView.getText().toString());
                 values.put(FriendsContract.FriendsColumns.FRIENDS_EMAIL, mEmailTextView.getText().toString());
+
                 Uri uri = FriendsContract.Friends.buildFriendUri(_id);
+
                 int recordsUpdated = mContentResolver.update(uri, values, null, null);
                 Log.d(LOG_TAG, "Number of records updated: " + recordsUpdated);
                 Intent intent = new Intent(EditActivity.this, MainActivity.class);

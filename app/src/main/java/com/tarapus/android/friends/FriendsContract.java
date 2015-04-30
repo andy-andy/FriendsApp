@@ -32,7 +32,7 @@ public class FriendsContract {
         public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd." + CONTENT_AUTHORITY + ".friend";
 
         public static Uri buildFriendUri(String friendId) {
-            return BASE_CONTENT_URI.buildUpon().appendEncodedPath(friendId).build();
+            return CONTENT_URI.buildUpon().appendEncodedPath(friendId).build();
         }
 
         public static String getFriendId(Uri uri) {
