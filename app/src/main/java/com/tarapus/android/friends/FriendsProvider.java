@@ -123,7 +123,7 @@ public class FriendsProvider extends ContentProvider {
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         Log.v(TAG, "delete(uri= " + uri);
         //Delete entire database
-        if (uri.equals(FriendsContract.BASE_CONTENT_URI)) {
+        if (uri.equals(FriendsContract.URI_TABLE)) {
             deleteDatabase();
             return 0;
         }
@@ -134,7 +134,7 @@ public class FriendsProvider extends ContentProvider {
             case FRIENDS_ID:
                 String id = FriendsContract.Friends.getFriendId(uri);
                 String selectionCriteria = BaseColumns._ID + "=" + id
-                        + (TextUtils.isEmpty(selection) ? " AND (" + selection + ")" : "");
+                        + (!TextUtils.isEmpty(selection) ? " AND (" + selection + ")" : "");
                 return db.delete(FriendsDatabase.Tables.FRIENDS, selectionCriteria, selectionArgs);
             default:
                 throw new IllegalArgumentException("Unknown Uri: " + uri);

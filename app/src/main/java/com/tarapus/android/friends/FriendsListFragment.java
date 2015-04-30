@@ -42,8 +42,9 @@ public class FriendsListFragment extends ListFragment
 
     @Override
     public void onLoadFinished(Loader<List<Friend>> loader, List<Friend> friends) {
-        mFriends = friends;
         mAdapter.setData(friends);
+        mFriends = friends;
+
         if (isResumed()) {
             setListShown(true);
         } else {

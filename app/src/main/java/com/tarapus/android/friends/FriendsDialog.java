@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class FriendsDialog extends DialogFragment {
     private static final String LOG_TAG = FriendsDialog.class.getSimpleName();
@@ -33,10 +34,11 @@ public class FriendsDialog extends DialogFragment {
             final int _id = getArguments().getInt(FriendsContract.FriendsColumns.FRIENDS_ID);
             String name = getArguments().getString(FriendsContract.FriendsColumns.FRIENDS_NAME);
             TextView popupMessage = (TextView) view.findViewById(R.id.popup_message);
-            popupMessage.setText("Are you sure you want to delete" + name + "from the database?");
+            popupMessage.setText("Are you sure you want to delete " + name + " from the database?");
             builder.setView(view).setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(getActivity(), "Deleting record: " + _id, Toast.LENGTH_LONG).show();
                     ContentResolver contentResolver = getActivity().getContentResolver();
                     Uri uri = FriendsContract.Friends.buildFriendUri(String.valueOf(_id));
                     contentResolver.delete(uri, null, null);
