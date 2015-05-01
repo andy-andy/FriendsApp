@@ -12,36 +12,37 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="0.8"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/friend_name"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/friend_name"
             android:textSize="@dimen/friend_name" />
 
         <TextView
             android:id="@+id/friend_email"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/friend_email"
             android:textSize="@dimen/friend_email" />
 
         <TextView
             android:id="@+id/friend_phone"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:textColor="@color/friend_phone" />
+            android:textColor="@color/friend_phone"
+            android:textSize="@dimen/friend_phone"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="0.2"
         android:gravity="right"
         android:orientation="horizontal">
 

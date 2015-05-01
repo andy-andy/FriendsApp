@@ -46,7 +46,14 @@ public class FriendsDialog extends DialogFragment {
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
-            });
+            })
+                    .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+
         } else if (command.equals(DELETE_DATABASE)) {
             TextView popupMessage = (TextView) view.findViewById(R.id.popup_message);
             popupMessage.setText("Are you sure you wish to delete the entire Database?");
@@ -60,7 +67,15 @@ public class FriendsDialog extends DialogFragment {
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
-            });
+            })
+                    .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+
+                    });
+
         } else if (command.equals(CONFIRM_EXIT)) {
             TextView popupMessage = (TextView) view.findViewById(R.id.popup_message);
             popupMessage.setText("Are you sure you wish to EXIT?");
@@ -69,7 +84,15 @@ public class FriendsDialog extends DialogFragment {
                 public void onClick(DialogInterface dialog, int which) {
                     getActivity().finish();
                 }
-            });
+            })
+                    .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+
+                    });
+
 
         } else {
             Log.d(LOG_TAG, "Invalid command passed as Parameter!");
